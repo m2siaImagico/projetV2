@@ -26,7 +26,7 @@
      <x>0</x>
      <y>0</y>
      <width>594</width>
-     <height>19</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFichier">
@@ -37,6 +37,7 @@
     <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionQuitter"/>
+    <addaction name="actionNouveau"/>
    </widget>
    <widget class="QMenu" name="menuFiche_Technique">
     <property name="title">
@@ -48,8 +49,38 @@
     <addaction name="actionAjouter"/>
     <addaction name="actionSupprimer"/>
    </widget>
+   <widget class="QMenu" name="menuImage">
+    <property name="title">
+     <string>Image processing</string>
+    </property>
+    <widget class="QMenu" name="menuLaplacian">
+     <property name="title">
+      <string>Laplacian</string>
+     </property>
+     <addaction name="actionSobel"/>
+     <addaction name="actionPrwitt"/>
+    </widget>
+    <addaction name="actionHistogramme"/>
+    <addaction name="actionConvolution"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionGradient"/>
+    <addaction name="menuLaplacian"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionPermitons"/>
+    <addaction name="actionConsutation"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdmnistrator"/>
+   </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuFiche_Technique"/>
+   <addaction name="menuImage"/>
+   <addaction name="menuSettings"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -82,6 +113,54 @@
   <action name="actionSupprimer">
    <property name="text">
     <string>Supprimer</string>
+   </property>
+  </action>
+  <action name="actionPermitons">
+   <property name="text">
+    <string>Permitons</string>
+   </property>
+   <property name="toolTip">
+    <string>Permitons</string>
+   </property>
+  </action>
+  <action name="actionConsutation">
+   <property name="text">
+    <string>Consutation</string>
+   </property>
+  </action>
+  <action name="actionAdmnistrator">
+   <property name="text">
+    <string>Admnistrator</string>
+   </property>
+  </action>
+  <action name="actionHistogramme">
+   <property name="text">
+    <string>Histogramme</string>
+   </property>
+  </action>
+  <action name="actionConvolution">
+   <property name="text">
+    <string>Convolution</string>
+   </property>
+  </action>
+  <action name="actionGradient">
+   <property name="text">
+    <string>Gradient</string>
+   </property>
+  </action>
+  <action name="actionSobel">
+   <property name="text">
+    <string>Sobel</string>
+   </property>
+  </action>
+  <action name="actionPrwitt">
+   <property name="text">
+    <string>Prwitt</string>
+   </property>
+  </action>
+  <action name="actionNouveau">
+   <property name="text">
+    <string>Nouveau</string>
    </property>
   </action>
  </widget>

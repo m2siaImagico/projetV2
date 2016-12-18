@@ -48,7 +48,7 @@ QString FichetechniqueImage::getTitre() const
 
 QString FichetechniqueImage::getNumero() const
 {
-
+    return _Numero;
 }
 
 QString FichetechniqueImage::getCout() const

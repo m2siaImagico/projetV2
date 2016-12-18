@@ -2,12 +2,18 @@
 #include "ui_mainwindow.h"
 #include "ajouterdialogfiche.h"
 #include <iostream>
+#include "QDomDocument"
+#include"QDomElement"
+#include"QFile"
+#include"QFileDialog"
+#include"QMessageBox"
+#include"QTextStream"
 
 //QMAKE_CXXFLAGS += std=gnu++14
 
 using namespace std;
 
-
+//git test
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,10 +34,55 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionOuvrir_triggered()
 {
 
+     auto NomFichier = QFileDialog::getOpenFileName(this,"I-magico Ouvrir fichier XML",
+                                                    QDir::rootPath(),"Fichier XML (*.xml)");
+    QFile fichier(NomFichier);
+
+    //tester si le fichier est vide, si oui alors retour
+    if (NomFichier.isEmpty())
+    {
+        return;
+    }
+
+    if (!fichier.open(QIODevice::ReadOnly  | QIODevice::Text))
+    {
+           QMessageBox::critical(this,"Erreur",fichier.errorString());
+            return;
+    }
+
+    //sauvegarder le contenu du fichier xml dans une variable doc
+
+    QDomDocument doc;
+    doc.setContent(&fichier);
+    fichier.close();
+
+    //Parcourir le fichier xml
+
+    int i(0);
+    auto root   = doc.firstChild().toElement(); //l'element parent "FICHESTECNIQUES"
+    auto nbfils = root.firstChild().toElement();
+    while(!nbfils.isNull())
+    {
+        i++;
+
+        //on recuperer l'attribu et la sauvegarder dans une variable attr
+        auto Numero = nbfils.attribute("Numero");
+        auto Source = nbfils.firstChild().toElement().text();
+        auto Titre = nbfils.firstChild().nextSibling().toElement().text();
+        auto Cout  = nbfils.firstChild().nextSibling().nextSibling().toElement().text();
+        auto Acces  = nbfils.firstChild().nextSibling().nextSibling().nextSibling().toElement().text();
+
+
+        AjouterFicheTechnique(FichetechniqueImage(Source, Titre, Numero,Cout, Acces));
+
+        //on passe au 2ème fiche technique de l'image suivante => le 2ème parent dans notre fichier xml
+        nbfils = nbfils.nextSibling().toElement();
+    }
 }
 
 void MainWindow::on_actionEnregistrer_sous_triggered()
 {
+
 
 }
 
@@ -78,4 +129,16 @@ void MainWindow::AjouterFicheTechnique(const FichetechniqueImage &ptrFcheTech)
     ui->tableWidget->setItem(row, COUT, new QTableWidgetItem(ptrFcheTech.getCout()));
     ui->tableWidget->setItem(row,ACCES, new QTableWidgetItem(ptrFcheTech.getAcces()));
 
+}
+
+void MainWindow::on_actionPermitons_triggered()
+{
+    cout<< "good bye";
+    close();
+}
+
+void MainWindow::on_actionNouveau_triggered()
+{
+    //code c++
+    cout<< "ajouter une nouvelle image"<<endl;
 }

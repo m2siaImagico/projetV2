@@ -1,6 +1,7 @@
 #include "ajouterdialogfiche.h"
 #include "ui_ajouterdialogfiche.h"
 
+//test
 AJouterDialogFiche::AJouterDialogFiche(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AJouterDialogFiche)
@@ -26,7 +27,6 @@ void AJouterDialogFiche::on_buttonBox_accepted()
     _fichetech.setNumero(ui->NumeroFichelineEdit_4->text());
     _fichetech.setCout(ui->CoutFichelineEdit->text());
     _fichetech.setAcces(ui->accesFichelineEdit->text());
-
 
     accept();
 }

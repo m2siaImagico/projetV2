@@ -27,6 +27,10 @@ private slots:
     void on_actionAjouter_triggered();
     void on_actionSupprimer_triggered();
 
+    void on_actionPermitons_triggered();
+
+    void on_actionNouveau_triggered();
+
 private:
 
     enum{
